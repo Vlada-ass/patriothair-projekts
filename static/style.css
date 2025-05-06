@@ -1,0 +1,150 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fefff6; 
+    color: #000000;
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-position: center;
+}
+
+header {
+    background-color: #8B0000; 
+    color: #000000;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    height: 100px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    image-rendering: auto;
+}
+
+nav a {
+    color: #fcfffa;
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 21px; /* Palielināts fonta izmērs */
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    padding: 25px;
+}
+
+footer {
+    background-color: #494988;
+    text-align: center;
+    padding: 12px;
+    font-size: 18px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul li a {
+    text-decoration: none;
+    color: #fafcff;
+    display: block;
+    font-weight: bold;
+    padding: 10px;
+    font-size: 18px;
+}
+
+ul li:hover {
+    background-color: #fafcff;
+}
+
+/* products-list */
+.products-list {
+    display: flex;
+    gap: 15px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.products-item {
+    max-width: 340px;
+    background-color: #7777b0;
+    padding: 12px;
+    border-radius: 6px;
+    color: #000000;
+    font-weight: bold;
+    font-size: 18px;
+    flex: 1 1 320px; /* Nodrošina elastīgu pielāgošanos */
+    max-width: 340px;
+}
+
+.products-item:hover {
+    background-color: #494988;
+}
+
+.products-item .product-price {
+    text-align: right;
+    font-size: 25px;
+}
+
+
+/* products-show */
+.products-show {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.products-show h2 {
+    font-size: 38px;
+}
+
+.products-show p {
+    font-size: 38px;
+    background-color: #fafcff;
+    padding: 12px;
+}
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    background-color: #7777b0;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-image {
+    max-width: 400px;
+    border-radius: 10px;
+    flex: 1 1 300px;
+}
+
+.product-details {
+    flex: 2 1 400px;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.products-item img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+
