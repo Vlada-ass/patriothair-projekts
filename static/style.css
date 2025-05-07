@@ -1,150 +1,160 @@
+/* Vispārējie stili visai lapai */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #fefff6; 
-    color: #000000;
+    font-family: Arial, sans-serif; /* Mainīgais fonta stils */
+    background-color: #fefff6; /* Gaiša fona krāsa */
+    color: #000000; /* Melns teksts */
     margin: 0;
     padding: 0;
-    background-size: cover;
-    background-position: center;
+    background-size: cover; /* Fons pārklāj visu ekrānu */
+    background-position: center; /* Fons centrēts */
 }
 
+/* Galvene */
 header {
-    background-color: #8B0000; 
-    color: #000000;
+    background-color: #8B0000; /* Tumši sarkana krāsa */
+    color: #000000; /* Melns teksts */
     padding: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: flex; /* Izmanto fleksibilitāti, lai novietotu elementus */
+    align-items: center; /* Vertikālā centrēšana */
+    justify-content: space-between; /* Izvietojums pa malām */
 }
 
+/* Logo stils */
 .logo {
-    height: 100px;
+    height: 100px; /* Logo augstums */
     width: auto;
-    object-fit: contain;
+    object-fit: contain; /* Saglabā attēla proporcijas */
     display: block;
-    image-rendering: auto;
+    image-rendering: auto; /* Attēlu kvalitāte */
 }
 
+/* Navigācijas saites */
 nav a {
-    color: #fcfffa;
-    margin: 0 15px;
-    text-decoration: none;
+    color: #fcfffa; /* Gaišs teksts */
+    margin: 0 15px; /* Atstarpe starp saitēm */
+    text-decoration: none; /* Bez apakšsvītras */
     font-size: 21px; /* Palielināts fonta izmērs */
 }
 
+/* Navigācijas saites pārejas stils */
 nav a:hover {
-    text-decoration: underline;
+    text-decoration: underline; /* Apakšsvītra pie pārejas */
 }
 
+/* Galvenais saturs */
 main {
-    padding: 25px;
+    padding: 25px; /* Pievieno atstarpi ap saturu */
 }
 
+/* Pēdējā sadaļa */
 footer {
-    background-color: #494988;
+    background-color: #494988; /* Zilā krāsa */
     text-align: center;
     padding: 12px;
     font-size: 18px;
 }
 
+/* Saraksts */
 ul {
-    list-style-type: none;
+    list-style-type: none; /* Noņem saraksta punktus */
 }
 
 ul li a {
-    text-decoration: none;
-    color: #fafcff;
+    text-decoration: none; /* Noņem apakšsvītru */
+    color: #fafcff; /* Gaiša krāsa */
     display: block;
     font-weight: bold;
     padding: 10px;
     font-size: 18px;
 }
 
+/* Saraksta elementa pārejas stils */
 ul li:hover {
-    background-color: #fafcff;
+    background-color: #fafcff; /* Gaiša krāsa pie hover */
 }
 
-/* products-list */
+/* Produktu saraksts */
 .products-list {
-    display: flex;
-    gap: 15px;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+    display: flex; /* Izmanto fleksibilitāti */
+    justify-content: center; /* Centrē elementus */
+    flex-wrap: wrap; /* Atļauj rindu pārtraukumu */
+    gap: 20px; /* Atstarpe starp produktiem */
 }
 
+/* Produktu viena vienība */
 .products-item {
-    max-width: 340px;
-    background-color: #7777b0;
+    max-width: 340px; /* Maksimālais platums */
+    background-color: #7777b0; /* Fons gaiši zilā krāsā */
     padding: 12px;
-    border-radius: 6px;
-    color: #000000;
-    font-weight: bold;
+    border-radius: 6px; /* Noapaļotas malas */
+    color: #000000; /* Melns teksts */
+    font-weight: bold; /* Bolds teksts */
     font-size: 18px;
-    flex: 1 1 320px; /* Nodrošina elastīgu pielāgošanos */
-    max-width: 340px;
+    flex: 1 1 320px; /* Elastīgs izmērs */
 }
 
+/* Hover stils produktiem */
 .products-item:hover {
-    background-color: #494988;
+    background-color: #494988; /* Tumši zils fons pie hover */
 }
 
+/* Produktu cenas stils */
 .products-item .product-price {
-    text-align: right;
-    font-size: 25px;
+    text-align: right; /* Cenai jābūt labajā pusē */
+    font-size: 25px; /* Palielināts fonta izmērs */
 }
 
-
-/* products-show */
+/* Produkta detalizētā skats */
 .products-show {
     display: flex;
-    justify-content: center;
-    gap: 20px;
+    justify-content: center; /* Centrē detaļas */
+    gap: 20px; /* Atstarpe starp detaļām */
 }
 
+/* Produkta nosaukuma stils */
 .products-show h2 {
-    font-size: 38px;
+    font-size: 38px; /* Liels fonta izmērs nosaukumam */
 }
 
+/* Produkta apraksta stils */
 .products-show p {
-    font-size: 38px;
-    background-color: #fafcff;
-    padding: 12px;
+    font-size: 38px; /* Liels fonta izmērs aprakstam */
+    background-color: #fafcff; /* Gaiši zilas krāsas fons */
+    padding: 12px; /* Atstarpe ap tekstu */
 }
+
+/* Produkta konteineris (attēls + detaļas) */
 .product-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    background-color: #7777b0;
+    display: flex; /* Fleksiblās izkārtojums */
+    flex-wrap: wrap; /* Atļauj elementiem tikt pārvietotiem uz jaunu rindu */
+    gap: 30px; /* Liela atstarpe starp elementiem */
+    background-color: #7777b0; /* Gaiši zilas krāsas fons */
     padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+    border-radius: 10px; /* Noapaļotas malas */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Viegls ēnas efekts */
+    justify-content: center; /* Centrē produktus */
+    align-items: center; /* Vertikāla centrēšana */
 }
 
+/* Produkta attēla stils */
 .product-image {
-    max-width: 400px;
-    border-radius: 10px;
-    flex: 1 1 300px;
+    max-width: 400px; /* Maksimālais platums attēlam */
+    border-radius: 10px; /* Noapaļotas malas */
+    flex: 1 1 300px; /* Elastīga platuma pielāgošana */
 }
 
+/* Produkta detaļu stils */
 .product-details {
-    flex: 2 1 400px;
+    flex: 2 1 400px; /* Elastīgi piemērotas detaļām */
     font-size: 18px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+    display: flex; /* Elastīgs izkārtojums */
+    flex-direction: column; /* Novieto detaļas vertikāli */
+    gap: 12px; /* Atstarpe starp detaļām */
 }
+
+/* Produktu attēli */
 .products-item img {
-    max-width: 100%;
-    height: auto;
-    display: block;
+    max-width: 100%; /* Attēls pielāgojas konteineram */
+    height: auto; /* Saglabā proporcijas */
+    display: block; /* Attēls kā bloks */
 }
-
-

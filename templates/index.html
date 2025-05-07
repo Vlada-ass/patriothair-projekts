@@ -1,14 +1,18 @@
-{% extends "base.html" %}
+{% extends "base.html" %}  <!-- Mantojums no bāzes lapas, nodrošina kopējo struktūru (header, footer, stilus) -->
 
-{% block title %}Sākums{% endblock %}
+{% block title %}Sākums{% endblock %}  <!-- Dinamisks tituls šai lapai, ko aizstās "Sākums" -->
 
 {% block content %}
+<!-- Šī ir galvenā lapa, kur tiek pievienots lapas specifiskais saturs -->
 <h1>Laipni lūgti PatriotHair - Jo Stipras Vērtības Prasa Vēl Stiprākus Matus!</h1>
 
+<!-- Ievads par uzņēmumu, uzsverot PatriotHair mērķus un vērtības -->
 <p>Noguruši no šampūniem, kuri <em>nestāv</em> par neko? Pie PatriotHair mēs ticam, ka <strong>mitrināšana ir izvēles iespēja, bet pārliecība ir obligāta</strong>. 
 Mūsu produkti ne tikai attīra galvas ādu - tie <strong>nostiprina tavu ideoloģiju</strong>.</p>
 
+<!-- Pievieno vērtību skaidrojumus par produktiem un to sastāvdaļām -->
 <p>Bez liekām sastāvdaļām, bez progresīvām inovācijām - tikai <strong>tīra, tradicionāla, brīvību mīloša putas</strong>. 
 Jo <strong>lieliskums sākas pie saknēm</strong>.</p>
 
 {% endblock %}
+

@@ -3,29 +3,27 @@ import flask
 import sqlite3
 from pathlib import Path
 
-# Importē Flask klasi no flask bibliotēkas
-import sqlite3
-
+# Izveido Flask lietojumprogrammu
 app = Flask(__name__)
-app.config["TEMPLATES_AUTO_RELOAD"] = True
-# Definē maršrutu: kad lietotājs apmeklē mājaslapas sākumlapu ("/"), tiek izsaukta funkcija home()
+app.config["TEMPLATES_AUTO_RELOAD"] = True  # Nodrošina, ka veidnes tiek automātiski atjauninātas
 
-
+# Funkcija, kas izveido savienojumu ar SQLite datubāzi
 def get_db_connection():
-    # izveido un atgriež savienojumu ar SQLite datubāzi
-    # atros celu uz datu bāzes failu (tas atrodas taja pašā mapē, kur šis fails)
+    # Atrod ceļu uz datubāzes failu (miniveikals.db)
     db = Path(__file__).parent / "miniveikals.db"
-    # izveido savienojumuar SQLite datubāzi
+    # Izveido savienojumu ar datubāzi
     conn = sqlite3.connect(db)
-    # Nodrošina, ka rezultāti būs pieejami kā vārdnīcas (piemēram "product["name"]")
+    # Nodrošina, ka rezultāti būs pieejami kā vārdnīcas (piemēram, "product['name']")
     conn.row_factory = sqlite3.Row
-    # atgriež savienojumu
+    # Atgriež savienojumu
     return conn
 
+# Maršruts, kas ļauj pievienot jaunu produktu
 @app.route("/produkti/jauns", methods=["GET", "POST"])
 def products_new():
     conn = get_db_connection()
 
+    # Ja ir POST pieprasījums (forma ir aizpildīta un nosūtīta)
     if request.method == "POST":
         name = request.form["name"]
         price = request.form["price"]
@@ -34,6 +32,7 @@ def products_new():
         description_id = request.form["description_id"]
         image = request.form["image"]
 
+        # Pievieno jaunu produktu datubāzē
         conn.execute("""
             INSERT INTO products (name, price, producer_id, composition_id, description_id, image)
             VALUES (?, ?, ?, ?, ?, ?)
@@ -41,9 +40,10 @@ def products_new():
         conn.commit()
         conn.close()
 
+        # Novirza uz produktu sarakstu
         return redirect(url_for("products"))
 
-    # Ja metode ir GET – iegūst sarakstus veidlapai
+    # Ja ir GET pieprasījums (parāda veidlapu ar pieejamiem datiem)
     producers = conn.execute("SELECT * FROM producers").fetchall()
     compositions = conn.execute("SELECT * FROM compositions").fetchall()
     descriptions = conn.execute("SELECT * FROM descriptions").fetchall()
@@ -53,10 +53,8 @@ def products_new():
                             producers=producers, 
                             compositions=compositions, 
                             descriptions=descriptions)
-# Maršruts, kas atbild uz pieprasījumu, piemēram: /produkti/3
-# Šeit <int:product_id> nozīmē, ka URL daļā gaidāms produkta ID kā skaitlis
 
-
+# Maršruts, kas ļauj rediģēt esošu produktu
 @app.route("/produkti/<int:product_id>/edit", methods=["GET", "POST"])
 def edit_product(product_id):
     conn = get_db_connection()
@@ -65,10 +63,12 @@ def edit_product(product_id):
     compositions = conn.execute("SELECT * FROM compositions").fetchall()
     descriptions = conn.execute("SELECT * FROM descriptions").fetchall()
 
+    # Ja produkts nav atrasts, atgriež 404 kļūdu
     if product is None:
         conn.close()
         return "Produkts nav atrasts", 404
 
+    # Ja ir POST pieprasījums, atjaunina produkta datus datubāzē
     if flask.request.method == "POST":
         name = flask.request.form["name"]
         price = flask.request.form["price"]
@@ -89,6 +89,7 @@ def edit_product(product_id):
     return render_template("products_edit.html", product=product, producers=producers,
                             compositions=compositions, descriptions=descriptions)
 
+# Maršruts, kas parāda produkta detalizētu informāciju
 @app.route("/produkti/<int:product_id>")
 def products_show(product_id):
     conn = get_db_connection()
@@ -108,46 +109,34 @@ def products_show(product_id):
     conn.close()
     return render_template("products_show.html", product=product)
 
-
-@app.route("/")
-def index():
-    return render_template("index.html")
-
-
-@app.route("/")
-def home():
-    # Atgriež tekstu, kas tiks parādīts pārlūkā
-    # Šis bloks tiek izpildīts tikai tad, ja fails tiek palaists tieši (nevis importēts)
-    return render_template("index.html")
-
-
-# Flask produktu maršruts
-
-
+# Maršruts, kas parāda visu produktu sarakstu
 @app.route("/produkti")
 def products():
-    conn = get_db_connection()  # pieslēdzas datubāzei
-    products = conn.execute("SELECT * FROM products").fetchall()
-    producers = conn.execute(
-        "SELECT * FROM producers"
-    ).fetchall()  # Iegūst ražotāju informāciju
+    conn = get_db_connection()  # Pieslēdzas datubāzei
+    products = conn.execute("SELECT * FROM products").fetchall()  # Iegūst visus produktus
+    producers = conn.execute("SELECT * FROM producers").fetchall()  # Iegūst visus ražotājus
     conn.close()  # Aizver savienojumu ar datubāzi
-    return render_template(
-        "products.html", products=products, producers=producers
-    )  # Nodod datus veidnei
+    return render_template("products.html", products=products, producers=producers)  # Nodod datus veidnei
 
+# Maršruts, kas ļauj dzēst produktu no datubāzes
+@app.route("/produkti/<int:product_id>/delete", methods=["POST"])
+def delete_product(product_id):
+    conn = get_db_connection()
+    conn.execute("DELETE FROM products WHERE id = ?", (product_id,))  # Dzēš produktu
+    conn.commit()
+    conn.close()
+    return redirect(url_for("products"))  # Novirza uz produktu sarakstu
 
+# Maršruts sākumlapai
+@app.route("/")
+def home():
+    return render_template("index.html")
+
+# Maršruts par "Par mums" lapu
 @app.route("/par-mums")
 def about():
     return render_template("about.html")
 
-@app.route("/produkti/<int:product_id>/delete", methods=["POST"])
-def delete_product(product_id):
-    conn = get_db_connection()
-    conn.execute("DELETE FROM products WHERE id = ?", (product_id,))
-    conn.commit()
-    conn.close()
-    return redirect(url_for("products"))
-
+# Ja šis fails tiek palaists tieši (nevis importēts), tad palaiž Flask serveri
 if __name__ == "__main__":
     app.run(debug=True)

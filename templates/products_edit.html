@@ -1,5 +1,6 @@
-{% extends "base.html" %}
-{% block title %}Rediģēt produktu{% endblock %}
+{% extends "base.html" %}  <!-- Paplašina no bāzes lapas (base.html) -->
+
+{% block title %}Rediģēt produktu{% endblock %}  <!-- Iestata lapas nosaukumu -->
 
 {% block content %}
 <h2>Rediģēt produktu</h2>
@@ -13,6 +14,7 @@
     <label>Ražotājs:</label><br>
     <select name="producer_id">
         {% for producer in producers %}
+        <!-- Šeit tiek izveidots nolaižamais saraksts ar ražotājiem -->
         <option value="{{ producer['id'] }}" {% if producer['id'] == product['producer_id'] %}selected{% endif %}>
             {{ producer['name'] }}
         </option>
@@ -22,6 +24,7 @@
     <label>Sastāvs:</label><br>
     <select name="composition_id">
         {% for comp in compositions %}
+        <!-- Šeit tiek izveidots nolaižamais saraksts ar sastāvdaļām -->
         <option value="{{ comp['id'] }}" {% if comp['id'] == product['composition_id'] %}selected{% endif %}>
             {{ comp['composition'] }}
         </option>
@@ -31,6 +34,7 @@
     <label>Apraksts:</label><br>
     <select name="description_id">
         {% for desc in descriptions %}
+        <!-- Šeit tiek izveidots nolaižamais saraksts ar aprakstiem -->
         <option value="{{ desc['id'] }}" {% if desc['id'] == product['description_id'] %}selected{% endif %}>
             {{ desc['description'] }}
         </option>
